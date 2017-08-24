@@ -1,0 +1,17 @@
+version: "3.3"
+services:
+  petstore:
+    image: "leftshiftit/jpetstore:${PETSTORE_VERSION}"
+    ports:
+      - 8888:8080
+    env_file:
+      - ./conf/app.env
+    networks:
+      - frontend
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+networks:
+  frontend:
